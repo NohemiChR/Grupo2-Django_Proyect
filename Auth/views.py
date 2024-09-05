@@ -60,7 +60,9 @@ def session(request):
         return redirect("home")
 
 def delete_session(request):
-    return render(request, "logout.html")
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect("login")
 
-def home(request):
-    return render(request, "home.html")
+    return redirect("index")
+
