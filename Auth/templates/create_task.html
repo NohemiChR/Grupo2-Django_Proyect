@@ -1,0 +1,8 @@
+{% extends "index.html" %} {% block "content" %}
+<h1>Crear tarea</h1>
+{{error}}
+<form method="POST">
+  {% csrf_token %} {{form}}
+  <button>create tarea</button>
+</form>
+{% endblock "content" %}
