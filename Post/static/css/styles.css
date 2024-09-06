@@ -228,7 +228,16 @@ Copiar esto
     }
 }
 
+.post-container {
+    width: 100%;
+    max-width: 600px;  /* Fija un ancho máximo para las publicaciones */
+    margin: 0 auto ;    /* Centra las publicaciones en el contenedor */
+}
 
+.card-body img {
+    max-width: 100%;
+    height: auto;      /* Asegura que las imágenes no se desborden */
+}
 
 /*Reacciones*/
 .reaction-container {
@@ -246,7 +255,7 @@ Copiar esto
     border-radius: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    z-index: 10;
+    z-index: 999;
 }
 
 .emoji-reactions img {
