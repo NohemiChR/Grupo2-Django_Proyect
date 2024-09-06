@@ -28,6 +28,7 @@ urlpatterns = [
      path("admin/", admin.site.urls), 
      path("", include("Post.urls")),
      path("", include("Auth.urls")),
+     path("", include("Profile.urls")),
     #  path("", include("Post.urls")),
     # path('admin/', admin.site.urls),   
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,5 +9,6 @@ urlpatterns = [
     path("login/", views.session, name="login"),
     path("logout/", views.delete_session, name="logout"),
     # path("home/", views.home, name="home"),
+    
     # Agrega aquí otras rutas de la aplicación
 ]
