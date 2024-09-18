@@ -25,14 +25,14 @@
                 <div class="reaction-container" id="reaction-container">
                     <span id="reaction-text" class="reaction-button"><i class="far fa-thumbs-up"></i> Me gusta</span>
                     <!-- Emojis que se mostrarán al hacer hover -->
-                    <div class="emoji-reactions" id="emoji-container">
-                        <img src="{% static 'like.png' %}" alt="Me gusta" title="Me gusta" onclick="selectReaction('Me gusta')">
-                        <img src="{% static 'love.png' %}" alt="Me encanta" title="Me encanta" onclick="selectReaction('Me encanta')">
-                        <img src="{% static 'care.png' %}" alt="Me importas" title="Me importas" onclick="selectReaction('Me importas')">
-                        <img src="{% static 'haha.png' %}" alt="Me divierte" title="Me divierte" onclick="selectReaction('Me divierte')">
-                        <img src="{% static 'wow.png' %}" alt="Me sorprende" title="Me sorprende" onclick="selectReaction('Me sorprende')">
-                        <img src="{% static 'sad.png' %}" alt="Me entristece" title="Me entristece" onclick="selectReaction('Me entristece')">
-                        <img src="{% static 'angry.png' %}" alt="Me enoja" title="Me enoja" onclick="selectReaction('Me enoja')">
+                    <div class="emoji-reactions" id="emoji-container-{{ post.id }}" style="display: none;">
+                        <img src="{% static 'like.png' %}" alt="Me gusta" title="Me gusta" onclick="sendReaction('{{ post.id }}', 'like')">
+                        <img src="{% static 'love.png' %}" alt="Me encanta" title="Me encanta" onclick="sendReaction('{{ post.id }}', 'love')">
+                        <img src="{% static 'care.png' %}" alt="Me importas" title="Me importas" onclick="sendReaction('{{ post.id }}', 'care')">
+                        <img src="{% static 'haha.png' %}" alt="Me divierte" title="Me divierte" onclick="sendReaction('{{ post.id }}', 'haha')">
+                        <img src="{% static 'wow.png' %}" alt="Me sorprende" title="Me sorprende" onclick="sendReaction('{{ post.id }}', 'wow')">
+                        <img src="{% static 'sad.png' %}" alt="Me entristece" title="Me entristece" onclick="sendReaction('{{ post.id }}', 'sad')">
+                        <img src="{% static 'angry.png' %}" alt="Me enoja" title="Me enoja" onclick="sendReaction('{{ post.id }}', 'angry')">
                     </div>
                 </div>
                 <span class="mx-3"><i class="far fa-comment"></i> Comentar</span>
