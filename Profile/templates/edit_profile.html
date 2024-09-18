@@ -1,55 +1,82 @@
-{% extends "header.html" %} 
-{% block "content" %}
-{% load humanize %}
-{% load static %}
+{% extends "header.html" %} {% block "content" %} {% load humanize %} 
+{% loadstatic %}
 
 <div class="container py-4">
-    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#mi-modal">
-        Abrir Modal
-    </button>
-    <div class="modal fade" id="mi-modal" data-bs-backdrop="static">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="w-100 text-center">
-                        <h2 class="modal-title">Editar perfil</h2>
-                      </div>
-                  <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-   
-                        <!-- Foto del perfil -->
-                        <div class="row ">
-                          <h4 class="mb-0">Foto del perfil</h4>
-                          <div class="w-50 mx-auto text-center">
-                            <img class="img-fluid rounded-circle" src="https://via.placeholder.com/200" alt="Perfil"
-                             >
-                          </div>
-                            
-                            <a href="#" class="ms-auto text-primary">Agregar</a>
-                        </div>
-                       <!-- Foto de portada -->
-                       <div class="mb-4">
-                        <h5>Foto de portada</h5>
-                        <div class="bg-light p-4 mb-2"></div>
-                        <a href="#" class="text-primary">Agregar</a>
-                       </div>
-                          <!-- Presentacion -->
-                          <div class="mb-4">
-                            <h4>Presentacion</h4>
-                            <div class="bg-light p-4 mb-2"></div>
-                            <a href="#" class="text-primary">Agregar</a>
-                           </div>
-                   
-                    
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary">Editar la seccion "Informacion"</button>
-                </div>
-            </div>
+  <button
+    class="btn btn-danger"
+    data-bs-toggle="modal"
+    data-bs-target="#mi-modal"
+  >
+    Abrir Modal
+  </button>
+  <div class="modal fade" id="mi-modal" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="w-100 text-center">
+            <h2 class="modal-title">Editar perfil</h2>
+          </div>
+          <button
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
+        <div class="modal-body">
+          <form
+            method="POST"
+            enctype="multipart/form-data"
+            action="{% url 'edit_profile' %}"
+          >
+            {% csrf_token %}
+            <!-- Foto del perfil -->
+            <div class="row mb-4">
+              <h4 class="mb-0">Foto del perfil</h4>
+              <div class="w-50 mx-auto text-center">
+                {% if user.profile.avatar %}
+                <img
+                  class="img-fluid rounded-circle"
+                  src="{{ user.profile.avatar.url }}"
+                  alt="Perfil"
+                />
+                {% else %}
+                <img
+                  class="img-fluid rounded-circle"
+                  src="{% static 'default-avatar.jpg' %}"
+                  alt="Perfil"
+                />
+                {% endif %}
+              </div>
+              <input type="file" name="avatar" class="form-control mt-2" />
+            </div>
+
+            <!-- Foto de portada -->
+            <div class="mb-4">
+              <h5>Foto de portada</h5>
+              <div
+                class="bg-light p-4 mb-2"
+                style="background-image: url('{% if user.profile.cover_photo %}{{ user.profile.cover_photo.url }}{% else %}{% static 'default-cover-photo.jpg' %}{% endif %}'); background-size: cover; height: 200px;"
+              ></div>
+              <input type="file" name="cover_photo" class="form-control mt-2" />
+            </div>
+
+            <!-- Presentación -->
+            <div class="mb-4">
+              <h4>Presentación</h4>
+              <textarea name="biography" class="form-control" rows="4">
+{{ user.profile.biography }}</textarea
+              >
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                Guardar cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock "content" %}
-
-

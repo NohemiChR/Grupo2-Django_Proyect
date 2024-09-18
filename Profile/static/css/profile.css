@@ -1,0 +1,8 @@
+/* styles.css */
+.profile-img {
+    max-width: 150px; /* Ajusta el tamaño máximo según tu diseño */
+    max-height: 150px; /* Ajusta el tamaño máximo según tu diseño */
+    width: auto;
+    height: auto;
+    object-fit: cover; /* Asegura que la imagen mantenga su proporción sin distorsionarse */
+  }
