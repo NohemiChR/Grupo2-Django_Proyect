@@ -48,10 +48,12 @@ Copiar esto
 .perfil-usuario img {
     width: 100%;
 }
+/**/
 .contenedor-perfil {
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+ 
 }
 .perfil-usuario .contenedor-perfil {
     display: block;
@@ -227,6 +229,19 @@ Copiar esto
         display: inline-block;
     }
 }
+
+form img {
+    width: 50%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 6px solid #AAA;
+    object-fit: cover;
+  }
+  
+
+/* POSTS */
 
 
 

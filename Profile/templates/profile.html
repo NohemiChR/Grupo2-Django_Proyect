@@ -1,6 +1,6 @@
 {% extends "header.html" %} {% block "content" %} {% load static %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-<section class="perfil-usuario">
+<section class="perfil-usuario" >
   <div class="contenedor-perfil">
     <div
       class="portada-perfil"
@@ -12,6 +12,7 @@
       <div class="avatar-perfil">
         {% if profile.avatar %}
         <img
+          
           class="rounded float-lef"
           src="{{ profile.avatar.url }}"
           alt="Avatar"
@@ -22,7 +23,7 @@
         </a>
         {% else %}
         <img src="http://localhost/multimedia/relleno/img-c9.png" alt="img" />
-        <a href="#" class="cambiar-foto">
+        <a href="#" id="select-image" class="cambiar-foto">
           <i class="fas fa-camera"></i>
           <span>Cambiar foto</span>
         </a>
@@ -98,39 +99,41 @@
           <!-- Foto del perfil -->
           <div class="row mb-4">
             <h4 class="mb-0">Foto del perfil</h4>
-            <div class="w-50 mx-auto text-center">
+            <div class="profile-img-container mx-auto text-center">
               {% if user.profile.avatar %}
               <img
+                id="profile-img-preview"
                 class="img-fluid rounded-circle"
                 src="{{ user.profile.avatar.url }}"
                 alt="Perfil"
               />
               {% else %}
               <img
+                id="profile-img-preview"
                 class="img-fluid rounded-circle"
                 src="{% static 'default-avatar.jpg' %}"
                 alt="Perfil"
               />
               {% endif %}
             </div>
-            <input type="file" name="avatar" class="form-control mt-2" />
+            <input type="file" id="profile-avatar"name="avatar" class="form-control mt-2" accept="image/*" />
           </div>
 
           <!-- Foto de portada -->
           <div class="mb-4">
             <h5>Foto de portada</h5>
             <div
+              id="cover-img-preview"
               class="bg-light p-4 mb-2"
               style="background-image: url('{% if user.profile.cover_photo %}{{ user.profile.cover_photo.url }}{% else %}{% static 'default-cover-photo.jpg' %}{% endif %}'); background-size: cover; height: 200px;"
             ></div>
-            <input type="file" name="cover_photo" class="form-control mt-2" />
+            <input type="file" id="cover-photo" name="cover_photo" class="form-control mt-2" accept="image/*" />
           </div>
 
           <!-- Presentación -->
           <div class="mb-4">
             <h4>Presentación</h4>
-            <textarea name="biography" class="form-control" rows="4">
-{{ user.profile.biography }}</textarea
+            <textarea name="biography" class="form-control" rows="4">{{ user.profile.biography }}</textarea
             >
           </div>
 
@@ -144,5 +147,32 @@
     </div>
   </div>
 </div>
+<div class="main-content" >
+  <div class="create-post">
+    <div class="create-post-input">
+
+      {% if profile.avatar %}
+        <img
+          
+          class="rounded float-lef"
+          src="{{ profile.avatar.url }}"
+          alt="Avatar"
+        />
+       
+        {% else %}
+        <img src="http://localhost/multimedia/relleno/img-c9.png" alt="img" />
+      
+        {% endif %}
+       <textarea rows="2" placeholder="Write a post"></textarea>
+    </div>
+    <div class="create-post-links">
+        <li><i class="fas fa-image"></i></li>
+        <li> <i class="fas fa-video"></i></li>
+        <li><i class="fas fa-calendar"></i></li>
+        <li>Post</li>
+    </div>
+
+  </div>
 </div>
+<script src="{% static 'js/profile.js' %}"></script> 
 {% endblock "content" %}
