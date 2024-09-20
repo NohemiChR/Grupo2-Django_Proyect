@@ -6,6 +6,7 @@ from . forms import  ProfileForm
 
 # Create your views here.
 def profile(request):
+    print('profile')
     user = request.user
     profile = get_object_or_404(Profile, user=user)
     return render(request, "profile.html", {"profile": profile})

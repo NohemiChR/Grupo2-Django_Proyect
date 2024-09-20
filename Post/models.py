@@ -38,7 +38,8 @@ class Reaction(models.Model):
     created = models.DateTimeField(auto_now_add=True)  # Fecha de creación
 
     def __str__(self):
-        return f"{self.user.username} reaccionó con {self.get_reaction_type_display()}"
+        
+        return self.get_reaction_type_display()
 
     class Meta:
         unique_together = ('user', 'post', 'coment')  # Evita que un usuario reaccione al mismo post o comentario más de una vez

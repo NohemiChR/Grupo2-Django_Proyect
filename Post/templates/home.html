@@ -1,54 +1,116 @@
+{% extends "header.html" %} {% load static %} {% block "content" %} {% load custom_filters %}
 
-{% extends "header.html" %} {% load static %} {% block "content" %}
-    <a href="{% url 'post_create' %}" class="btn btn-primary me-4 btn-lg"
-        role="button">Crear nuevo post</a>
-    {% for post in posts %}
-    <div class="container mt-4">
-        
-        <!-- Publicación -->
-        <div class="card post-container">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <img src='' alt="User Avatar" class="rounded-circle me-2" style="width: 40px;">
-                    <span><strong>{{ post.user.username }}</strong></span>
-                </div>
-                <span class="text-muted">{{ post.created }}</span>
-            </div>
-            <div class="card-body">
-                <p>{{ post.description }}.</p>
-                {% if post.file %}
-                <img src="{{ post.file.url }}" alt="file" width="200">
-                {% endif %}
-            </div>
-            <div class="card-footer">
-                <!-- Reacciones con emojis -->
-                <div class="reaction-container" id="reaction-container">
-                    <span id="reaction-text" class="reaction-button"><i class="far fa-thumbs-up"></i> Me gusta</span>
-                    <!-- Emojis que se mostrarán al hacer hover -->
-                    <div class="emoji-reactions" id="emoji-container-{{ post.id }}" style="display: none;">
-                        <img src="{% static 'like.png' %}" alt="Me gusta" title="Me gusta" onclick="sendReaction('{{ post.id }}', 'like')">
-                        <img src="{% static 'love.png' %}" alt="Me encanta" title="Me encanta" onclick="sendReaction('{{ post.id }}', 'love')">
-                        <img src="{% static 'care.png' %}" alt="Me importas" title="Me importas" onclick="sendReaction('{{ post.id }}', 'care')">
-                        <img src="{% static 'haha.png' %}" alt="Me divierte" title="Me divierte" onclick="sendReaction('{{ post.id }}', 'haha')">
-                        <img src="{% static 'wow.png' %}" alt="Me sorprende" title="Me sorprende" onclick="sendReaction('{{ post.id }}', 'wow')">
-                        <img src="{% static 'sad.png' %}" alt="Me entristece" title="Me entristece" onclick="sendReaction('{{ post.id }}', 'sad')">
-                        <img src="{% static 'angry.png' %}" alt="Me enoja" title="Me enoja" onclick="sendReaction('{{ post.id }}', 'angry')">
-                    </div>
-                </div>
-                <span class="mx-3"><i class="far fa-comment"></i> Comentar</span>
-                <span><i class="far fa-share-square"></i> Compartir</span>
-            </div>
-        </div>
-        {% empty %}
-        <p>No tienes posts.</p>
-        {% endfor %}
+<a
+  href="{% url 'post_create' %}"
+  class="btn btn-primary me-4 btn-lg"
+  role="button"
+  >Crear nuevo post</a
+>
+{% for post in posts %}
+<div class="container mt-4">
+  <!-- Publicación -->
+  <div class="card post-container mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <img
+          src=""
+          alt="User Avatar"
+          class="rounded-circle me-2"
+          style="width: 40px"
+        />
+        <span><strong>{{ post.user.username }}</strong></span>
+      </div>
+      <span class="text-muted">{{ post.created }}</span>
     </div>
+    <div class="card-body">
+      <p>{{ post.description }}.</p>
+      {% if post.file %}
+      <img src="{{ post.file.url }}" alt="file" width="500" />
+      {% endif %}
+    </div>
+    <div class="card-footer">
+      <!-- Reacciones con emojis -->
+      <div class="reaction-container" data-post-id="{{ post.id }}">
+        {% csrf_token %}
+        <!-- Verifica si el post tiene una reacción del usuario actual -->
+        {% with reactions_dict|get_item:post.id as reaction %}
+          {% if reaction %}
+          <span class="reaction-text reaction-button">
+            <i class="far fa-thumbs-up"></i> {{ reaction }}
+          </span>
+          {% else %}
+          <span class="reaction-text reaction-button"><i class="far fa-thumbs-up"></i> Me gusta</span>
+          {% endif %}
+        {% endwith %}
+        <!-- Emojis que se mostrarán al hacer hover -->
+        <div class="emoji-reactions">
+          <img
+            src="{% static 'like.png' %}"
+            alt="Me gusta"
+            title="Me gusta"
+            class="emoji"
+          />
+          <img
+            src="{% static 'love.png' %}"
+            alt="Me encanta"
+            title="Me encanta"
+            class="emoji"
+          />
+          <img
+            src="{% static 'care.png' %}"
+            alt="Me importa"
+            title="Me importa"
+            class="emoji"
+          />
+          <img
+            src="{% static 'haha.png' %}"
+            alt="Me divierte"
+            title="Me divierte"
+            class="emoji"
+          />
+          <img
+            src="{% static 'wow.png' %}"
+            alt="Me sorprende"
+            title="Me sorprende"
+            class="emoji"
+          />
+          <img
+            src="{% static 'sad.png' %}"
+            alt="Me entristece"
+            title="Me entristece"
+            class="emoji"
+          />
+          <img
+            src="{% static 'angry.png' %}"
+            alt="Me enoja"
+            title="Me enoja"
+            class="emoji"
+          />
+        </div>
+      </div>
 
-   <!-- Bootstrap JS and Font Awesome for icons -->
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-   <!-- JavaScript para manejar la selección de reacción -->
-   <script src="{% static 'js/script.js' %}"></script>
+      <span class="mx-3"><i class="far fa-comment"></i> Comentar</span>
+      <span><i class="far fa-share-square"></i> Compartir</span>
+    </div>
+  </div>
+  {% empty %}
+  <p>No tienes posts.</p>
+  {% endfor %}
+</div>
+
+<!-- Bootstrap JS and Font Awesome for icons -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+  crossorigin="anonymous"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+<!-- JavaScript para manejar la selección de reacción -->
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock "content" %}
-
