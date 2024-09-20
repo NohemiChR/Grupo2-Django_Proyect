@@ -1,0 +1,10 @@
+.custom-btn {
+    color: #fff; /* Color del texto cuando el cursor no está sobre el botón */
+    transition: color 0.3s; /* Suavizar la transición del color */
+}
+
+.custom-btn:hover {
+    color: #000; /* Color del texto al pasar el cursor */
+    background-color: #fff; /* Color de fondo al pasar el cursor */
+}
+
