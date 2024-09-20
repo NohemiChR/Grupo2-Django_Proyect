@@ -26,3 +26,4 @@ reactionContainers.forEach((container) => {
             reactionText.classList.add('reaction-selected');
             emojiContainer.style.display = 'none'; // Ocultar los emojis después de seleccionar
         }
+      })
