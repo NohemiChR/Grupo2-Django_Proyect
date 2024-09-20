@@ -1,6 +1,29 @@
-<h1>{% if form.instance.pk %}Editar Post{% else %}Crear Post{% endif %}</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+{% extends "header.html" %} {% block "content" %} {% load static %}
+
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 110vh"
+>
+  <div class="container mt-5" style="max-width: 800px; width: 100%">
+    <h1
+      class="text-center mb-4 p-4 shadow-sm rounded"
+      style="background-color: #f8f9fa; font-size: 2.5rem"
+    >
+      {% if form.instance.pk %}Editarrr Post{% else %}Crear Nuevo Post{% endif%}
+    </h1>
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      class="p-5 shadow-sm rounded"
+      style="background-color: white"
+    >
+      {% csrf_token %} {% comment %}
+      <div class="mb-3">{% endcomment %} {{ form.as_p }} {% comment %}</div>
+      {% endcomment %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <div>
+{% endblock "content" %}
