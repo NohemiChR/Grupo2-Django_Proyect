@@ -1,3 +1,13 @@
+/* form img {
+  width: 50%;
+  max-width: 200px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 6px solid #AAA;
+  object-fit: cover;
+} */
+
 /* Estilos para las imágenes en el modal */
 .profile-img-container img {
   width: 50%;
@@ -29,6 +39,7 @@ body{
   margin-left: auto;
   margin-right: auto;
 } */
+ /* post--------------------------- */
 .main-content {
   max-width: 1024px;
   margin-left: auto;
@@ -70,9 +81,11 @@ body{
   height: auto; /* Permite que la altura se ajuste automáticamente */
   aspect-ratio: 1 / 1; /* Mantiene la proporción de 1:1 para que siempre sea un círculo */
   border-radius: 50%;
+  border: none;
   object-fit: cover;
   overflow: hidden;
   margin-right: 10px;
+ 
 }
 .create-post-input textarea{
   width: 100%;
@@ -116,4 +129,32 @@ body{
 
 
 }
+
+/* ---------------------------------------new post */
+.new-post {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 12px; /* Bordes redondeados sin cambiar fondo */
+ 
+  overflow: hidden; /* Evita que el contenido sobresalga de los bordes redondeados */
+}
+.new-post .card{
+  border-radius: 12px;
+}
+
+/* Si quieres adaptarlo más como .menu-perfil */
+@media (max-width: 780px) {
+  .new-post {
+    width: 70%; /* Se ajusta al 90% del viewport en pantallas pequeñas */
+    border-radius: 10px;
+  }
+}
+/* 
+#postForm {
+  border: none; 
+  padding: 0; 
+  margin: 0; 
+} */
 

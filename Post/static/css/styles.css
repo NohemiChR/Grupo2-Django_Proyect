@@ -230,16 +230,7 @@ Copiar esto
     }
 }
 
-form img {
-    width: 50%;
-    max-width: 200px;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    border: 6px solid #AAA;
-    object-fit: cover;
-  }
-  
+
 
 /* POSTS */
 
