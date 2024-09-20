@@ -1,34 +1,44 @@
-{% extends "header.html" %} {% load static %} {% block "content" %}
-<div class="d-flex justify-content-center align-items-center" style="min-height: 110vh;">
-    <div class="container mt-5" style="max-width: 800px; width: 100%;">
+{% extends "header.html" %}
+{% load static %}
+{% block "content" %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 110vh; background-color: #003366; border: 3px solid #ffffff; padding: 20px;">
+    <div class="container mt-5" style="max-width: 700px; width: 100%; border: 2px solid #003366; border-radius: 15px; padding: 20px;">
         <!-- Título del formulario con un estilo agradable -->
-        <h1 class="text-center mb-4 p-4 shadow-sm rounded" style="background-color: #f8f9fa; font-size: 2.5rem;">
+        <h1 class="text-center mb-4 p-4 shadow-sm rounded" 
+            style="background-color: #ffffff; font-size: 2.5rem; color: #003366; font-family: 'Roboto', sans-serif; border: 2px solid #003366;">
             {% if form.instance.pk %}
                 Editar Post
             {% else %}
                 Crear Post
             {% endif %}
         </h1>
+
         <!-- Formulario con estilos de Bootstrap -->
-        <form method="post" enctype="multipart/form-data" class="p-5 shadow-sm rounded" style="background-color: white;">
+        <form method="post" enctype="multipart/form-data" class="p-5 shadow-lg rounded" style="background-color: #ffffff; border: 2px solid #003366;">
             {% csrf_token %}
-            <!-- Renderizamos los campos del formulario -->
-            <div class="mb-3">
-                <textarea name="description" cols="50" rows="7" id="id_description" style="border:none; width: 100%;"></textarea>
+
+            <!-- Campo de descripción estilizado -->
+            <div class="form-group mb-4" style="border: 2px solid #003366; border-radius: 10px; padding: 10px;">
+                <textarea name="description" class="form-control" cols="50" rows="7" id="id_description" placeholder="Escribe tu post aquí..." style="border: none; background-color: #f0f4f7; color: #003366; border-radius: 10px;"></textarea>
             </div>
-            <div>
-                <label for="id_file">file:</label>
+
+            <!-- Botón para subir archivo personalizado -->
+            <div class="mb-4 text-center" style="border-radius: 10px; padding: 10px;">
+                <label for="id_file" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-upload"></i> Subir archivo
+                </label>
                 <input type="file" name="file" accept="image/*" id="id_file" style="display: none;">
             </div>
-            <!-- Botón personalizado con icono -->
-            <label for="id_file" class="custom-file-upload">
-                <i class="fas fa-upload"></i> Subir archivo
-            </label>
+
             <!-- Botón de guardar estilizado con Bootstrap -->
             <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #003366; border-color: #003366;">
+                    Guardar
+                </button>
             </div>
         </form>
     </div>
 </div>
+
 {% endblock "content"%}

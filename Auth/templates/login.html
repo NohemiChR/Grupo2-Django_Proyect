@@ -20,11 +20,11 @@
 
     <!-------------------- ------ Right Box ---------------------------->
         
-       <div class="col-md-6 right-box">
-          <div class="row align-items-center">
+       <div class="col-md-6 right-box ">
+          <div class="row align-items-center" style="margin:15px ">
                 <div class="header-text mb-4">
-                     <h2>Hola, de nuevo</h2>
-                     <p>Estamos contentos de que estes aquí nuevamente.</p>
+                     <h2 style="font-family: 'Roboto', sans-serif;">Hola, de nuevo</h2>
+                     <p style="font-family: 'Roboto', sans-serif;">Estamos contentos de que estes aquí nuevamente.</p>
                 </div>
                 <form action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
