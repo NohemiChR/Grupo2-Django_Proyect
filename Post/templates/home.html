@@ -13,7 +13,7 @@
     <div class="card-header d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <img
-          src=""
+          src="{% static 'default-avatar.jpg' %}"
           alt="User Avatar"
           class="rounded-circle me-2"
           style="width: 40px"
@@ -88,8 +88,7 @@
           />
         </div>
       </div>
-
-      <span class="mx-3"><i class="far fa-comment"></i> Comentar</span>
+      <a class="mx-3" style="text-decoration: none; color: inherit;" href="{% url 'get_post' post.id %}"><i class="far fa-comment"></i> Comentar</a>
       <span><i class="far fa-share-square"></i> Compartir</span>
     </div>
   </div>

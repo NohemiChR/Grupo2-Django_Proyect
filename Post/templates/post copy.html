@@ -1,0 +1,114 @@
+{% extends "header.html" %} 
+{% load static %} 
+{% block "content" %}
+{% load custom_filters %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+
+<!--==========================
+=            html            =
+===========================-->
+ <!----------------------- Main Container -------------------------->
+ <div class="container d-flex justify-content-center align-items-center">
+    <!----------------------- Login Container -------------------------->
+       <div class="row border rounded-2 p-3 bg-white shadow box-area">
+    <!--------------------------- Left Box ----------------------------->
+       <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
+            <img src="{{ post.file.url }}" class="img-fluid" style="width: 250px;">
+       </div> 
+    <!-------------------- ------ Right Box ---------------------------->
+       <div class="col-md-6 right-box">
+          <div class="row align-items-center">
+            <div class="publicacion-realizada">
+                <div class="usuario-publico d-flex align-items-center">
+                    <div class="avatar" style="margin-right: 10px ; ">
+                        {% if post.user.profile.avatar %}
+                            <img src="{{ post.user.profile.avatar.url }}" alt="img" style="width: 50px; height: 50px; border-radius: 50%;">
+                        {% else %}
+                            <img src="{% static 'default-avatar.jpg' %}" alt="img" style="width: 50px; height: 50px; border-radius: 50%;">
+                        {% endif %}
+                    </div>
+                    <div class="contenido-publicacion">
+                        <h4>{{ post.user.username }}</h4>
+                    </div>
+                </div>
+                <p>{{ post.description }}</p>
+                <div class="botones-comentario">
+                    <button type="" class="boton-puntuar">
+                        <i class="fas fa-thumbs-up"></i>
+                        45
+                    </button>
+                    <button type="" class="boton-responder">
+                        Comentar
+                    </button>
+                </div>
+            </div>
+
+            <div class="comentarios-usuarios" style="max-height: 300px; overflow-y: auto;">
+                {% for comment in comments %}
+                <!-- comentario principal -->
+                <div class="comentario-principal-usuario">
+                    <div class="comentario">
+                        <div class="usuario-comentario d-flex align-items-start ">
+                            <div class="avatar mt-2" style="float: left; margin-right: 10px;">
+                                {% if comment.user.profile.avatar %}
+                                    <img src="{{ comment.user.profile.avatar.url }}" alt="img" style="width: 40px; height: 40px; border-radius: 50%;">
+                                {% else %}
+                                    <img src="{% static 'default-avatar.jpg' %}" alt="img" style="width: 40px; height: 40px; border-radius: 50%;">
+                                {% endif %}
+                            </div>
+                            <div class="texto">
+                                <a href="#" title="" class="nombre-usuario" style="font-weight: bold;">{{ comment.user.username }}</a>
+                                {{ comment.description }}
+                                <div class="menu-comentario">
+                                    <i class="fas fa-pen"></i>
+                                    <ul class="menu">
+                                        <li><a href="">Editar</a></li>
+                                        <li><a href="">Eliminar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="botones-comentario d-flex align-items-center ms-5">
+                            <button type="button" class="boton-puntuar">
+                                <i class="fas fa-thumbs-up"></i>
+                                5
+                            </button>
+                            <button type="button" class="boton-responder">
+                                responder
+                            </button>
+                            <span class="tiempo-comentario">
+                                {{comment.created}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+    <p>No hay comentarios todavía.</p>
+    {% endfor %}
+            </div>
+
+            <!-- Sección de comentar más abajo -->
+            <div class="comentar-publicacion d-flex align-items-center mt-4">
+                <div class="avatar" style="margin-right: 10px ; ">
+                    {% if post.user.profile.avatar %}
+                        <img src="{{ post.user.profile.avatar.url }}" alt="img" style="width: 50px; height: 50px; border-radius: 50%;">
+                    {% else %}
+                        <img src="{% static 'default-avatar.jpg' %}" alt="img" style="width: 50px; height: 50px; border-radius: 50%;">
+                    {% endif %}
+                </div>
+                <form action="{% url 'post_coment' post.id %}" method="POST" class="comentar-comentario" style="width: 100%;">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" name="comment" class="form-control" placeholder="Escribe un comentario...">
+                        <button type="submit" class="boton-enviar btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+          </div>
+       </div> 
+    </div>
+</div>
+
+{% endblock "content" %}

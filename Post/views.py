@@ -54,3 +54,30 @@ def post_react(request, post_id):
         return JsonResponse({'status': 'ok', 'reaction': reaction_type})
 
     return JsonResponse({'status': 'error'}, status=400)
+
+def get_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)  # Obtiene el post según su id
+    comments = Coment.objects.filter(post=post).order_by('created')  # Obtiene los comentarios asociados al post
+    total_reactions = Reaction.objects.filter(post=post).count()
+    return render(request, 'post.html', {
+        'post': post,
+        'comments': comments,
+        'total_reactions': total_reactions
+    })
+
+@login_required
+def post_coment(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    
+    if request.method == 'POST':
+        comment_text = request.POST.get('comment')
+        if comment_text:
+            # Create and save the comment
+            Coment.objects.create(
+                description=comment_text,
+                user=request.user,
+                post=post
+            )
+        return redirect('post_coment', post_id=post.id)
+    
+    return redirect('get_post', post_id=post.id)
