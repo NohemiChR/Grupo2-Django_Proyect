@@ -230,7 +230,7 @@ Copiar esto
 
 .post-container {
     width: 100%;
-    max-width: 600px;  /* Fija un ancho máximo para las publicaciones */
+    max-width: 1000px;  /* Fija un ancho máximo para las publicaciones */
     margin: 0 auto ;    /* Centra las publicaciones en el contenedor */
 }
 

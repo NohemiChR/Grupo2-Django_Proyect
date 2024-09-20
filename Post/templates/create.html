@@ -1,5 +1,4 @@
 {% extends "header.html" %} {% load static %} {% block "content" %}
-
 <div class="d-flex justify-content-center align-items-center" style="min-height: 110vh;">
     <div class="container mt-5" style="max-width: 800px; width: 100%;">
         <!-- Título del formulario con un estilo agradable -->
@@ -10,11 +9,9 @@
                 Crear Post
             {% endif %}
         </h1>
-
         <!-- Formulario con estilos de Bootstrap -->
         <form method="post" enctype="multipart/form-data" class="p-5 shadow-sm rounded" style="background-color: white;">
             {% csrf_token %}
-
             <!-- Renderizamos los campos del formulario -->
             <div class="mb-3">
                 <textarea name="description" cols="50" rows="7" id="id_description" style="border:none; width: 100%;"></textarea>
@@ -27,7 +24,6 @@
             <label for="id_file" class="custom-file-upload">
                 <i class="fas fa-upload"></i> Subir archivo
             </label>
-
             <!-- Botón de guardar estilizado con Bootstrap -->
             <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
@@ -35,5 +31,4 @@
         </form>
     </div>
 </div>
-
 {% endblock "content"%}
