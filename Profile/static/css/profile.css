@@ -1,5 +1,147 @@
 /* Estilos para las imágenes en el modal */
 .profile-img-container img {
+    width: 50%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 6px solid #AAA;
+    object-fit: cover;
+  }
+  
+  #cover-img-preview {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+  }
+  
+  /* main-content */
+  body{
+    background-color: aquamarine;
+  }
+  /* .main-content{
+    flex-basis:47%;
+  } */
+  /* .main-content{
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+   /* post--------------------------- */
+  .main-content {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 12px; /* Bordes redondeados sin cambiar fondo */
+   
+    overflow: hidden; /* Evita que el contenido sobresalga de los bordes redondeados */
+  }
+  .main-content .create-post{
+    border-radius: 12px;
+  }
+  /* Si quieres adaptarlo más como .menu-perfil */
+  @media (max-width: 780px) {
+    .main-content {
+      width: 70%; /* Se ajusta al 90% del viewport en pantallas pequeñas */
+      border-radius: 10px;
+    }
+  }
+  
+  
+  .create-post{
+    background: #fff;
+  }
+  .create-post-input{
+    padding: 20px 25px 10px;
+    display: flex;
+    align-items: flex-start;
+  
+  }
+  /* .create-post-input img{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+  } */
+  .create-post-input img {
+    width: 10vw; /* El ancho será el 10% del ancho de la ventana de visualización */
+    max-width: 50px; /* Limita el tamaño máximo a 50px */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    aspect-ratio: 1 / 1; /* Mantiene la proporción de 1:1 para que siempre sea un círculo */
+    border-radius: 50%;
+    border: none;
+    object-fit: cover;
+    overflow: hidden;
+    margin-right: 10px;
+   
+  }
+  .create-post-input textarea{
+    width: 100%;
+    border: 0;
+    outline:0 ;
+    resize: none;
+    background: transparent;
+    margin-top: 8px;
+  }
+  ::placeholder{
+   font-weight: 500; 
+  }
+  .create-post-links{
+    display: flex;
+    align-items: flex-start;
+  
+  }
+  .create-post-links li{
+    list-style: none;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    flex-basis: 25%;
+    height: 40px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  
+  }
+  .create-post-links li i{
+    width: 15px;
+    margin-right: 5px;
+  
+  }
+  .create-post-links li:last-child{
+    /* background: #045be6;
+    color: #fff;
+    border-top: 0; */
+    border-right: 0;
+  
+  
+  }
+  
+  /* ---------------------------------------new post */
+  .new-post {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 12px; /* Bordes redondeados sin cambiar fondo */
+   
+    overflow: hidden; /* Evita que el contenido sobresalga de los bordes redondeados */
+  }
+  .new-post .card{
+    border-radius: 12px;
+  }
+  
+  /* Si quieres adaptarlo más como .menu-perfil */
+  @media (max-width: 780px) {
+    .new-post {
+      width: 70%; /* Se ajusta al 90% del viewport en pantallas pequeñas */
+      border-radius: 10px;
+    }
+  }/* Estilos para las imágenes en el modal */
+.profile-img-container img {
   width: 50%;
   max-width: 200px;
   height: auto;
