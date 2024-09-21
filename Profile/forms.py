@@ -15,4 +15,4 @@ class ProfileForm(ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['description', 'file']  # Los campos que se editarán
+        fields = ['description', 'file']  # Los campos que se editarán
